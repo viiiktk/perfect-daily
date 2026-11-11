@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+  <meta name="theme-color" content="#090a0d">
+  <meta name="description" content="perfect.daily — заметки о привычках, движении, уходе и повседневной эстетике.">
+  <title>perfect.daily · vista</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <!-- All graphics and functionality are local. No network resources. -->
+  <svg class="svg-sprite" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="ico-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+    <symbol id="ico-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></symbol>
+    <symbol id="ico-search" viewBox="0 0 24 24"><circle cx="10.9" cy="10.9" r="7"/><path d="m16.3 16.3 5 5"/></symbol>
+    <symbol id="ico-heart" viewBox="0 0 24 24"><path d="M20.8 4.9a5.6 5.6 0 0 0-7.9 0L12 5.8l-.9-.9a5.6 5.6 0 1 0-7.9 7.9l.9.9L12 21l7.9-8.2.9-.9a5.6 5.6 0 0 0 0-7.9z"/></symbol>
+    <symbol id="ico-message" viewBox="0 0 24 24"><path d="M21 11.5c0 4.8-4 8.5-9 8.5a10.4 10.4 0 0 1-4.1-.8L3 21l1.8-4.3A8 8 0 0 1 3 11.5C3 6.8 7 3 12 3s9 3.8 9 8.5Z"/></symbol>
+    <symbol id="ico-bookmark" viewBox="0 0 24 24"><path d="M5 3.5h14v17L12 16l-7 4.5z"/></symbol>
+    <symbol id="ico-share" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4zM22 2 11 13"/></symbol>
+    <symbol id="ico-chev" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+    <symbol id="ico-close" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+    <symbol id="ico-more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.3"/><circle cx="12" cy="12" r="1.3"/><circle cx="19" cy="12" r="1.3"/></symbol>
+    <symbol id="ico-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></symbol>
+    <symbol id="ico-check" viewBox="0 0 24 24"><path d="m5 12 4.5 4.5L19 7"/></symbol>
+    <symbol id="ico-camera" viewBox="0 0 24 24"><path d="M4 7h4l2-3h4l2 3h4a1 1 0 0 1 1 1v12H3V8a1 1 0 0 1 1-1Z"/><circle cx="12" cy="13" r="4"/></symbol>
+  </svg>
+
+  <aside class="sidebar" aria-label="Навигация">
+    <button class="brand" type="button" id="brandBtn" aria-label="Наверх профиля"><span class="brand-glyph">✳</span><span class="brand-word">vista<span class="brand-dot">.</span></span></button>
+    <nav class="side-nav" aria-label="Разделы профиля">
+      <button class="nav-link is-active" data-view="all" type="button"><svg><use href="#ico-home"/></svg><span>Профиль</span></button>
+      <button class="nav-link" id="searchButton" type="button"><svg><use href="#ico-search"/></svg><span>Поиск по постам</span></button>
+      <button class="nav-link" data-view="liked" type="button"><svg><use href="#ico-heart"/></svg><span>Понравившееся</span></button>
+      <button class="nav-link" data-view="saved" type="button"><svg><use href="#ico-bookmark"/></svg><span>Сохранённое</span></button>
+    </nav>
+    <div class="side-bottom"><span class="live-dot"></span><span>Лента привычек и моментов</span></div>
+  </aside>
+
+  <header class="mobile-header"><button type="button" id="mobileTop" class="mobile-logo">vista<span>.</span></button><span class="mobile-user">perfect.daily</span><button type="button" id="mobileSearch" aria-label="Поиск по постам" class="plain-icon"><svg><use href="#ico-search"/></svg></button></header>
+
+  <main class="main" id="main">
+    <div class="page-inner">
+      <section class="profile" aria-label="Профиль perfect.daily">
+        <div class="avatar-shell"><div class="avatar-ring"><img src="avatar.webp" alt="Алина — владелица профиля perfect.daily"></div></div>
+        <div class="profile-details">
+          <div class="profile-row"><div class="name-wrap"><h1>perfect.daily</h1><span class="tiny-star" title="Автор">✦</span></div><div class="profile-actions"><button class="button button-light" id="followBtn" type="button">Подписаться</button><button class="button button-dark" type="button" id="shareProfileBtn">Поделиться</button></div></div>
+          <div class="stats" aria-label="Статистика аккаунта"><span><strong>6</strong> публикаций</span><span><strong id="followerNum">28,6 тыс.</strong> подписчиков</span><span><strong>291</strong> подписка</span></div>
+          <div class="bio"><p class="bio-name">alina · 25 <span>♡</span></p><p>routine / movement / details</p><p>собираю себя по маленьким привычкам<br>каждый день — повод стать чуть лучше ✨</p><p class="bio-city">Санкт-Петербург · lifestyle</p></div>
+        </div>
+      </section>
+
+      <section class="highlights" aria-label="Актуальные моменты">
+        <button class="highlight" type="button" data-open="0"><span><img src="post-01-workout.webp" alt=""></span><b>movement</b></button>
+        <button class="highlight" type="button" data-open="1"><span><img src="post-02-skincare.webp" alt=""></span><b>selfcare</b></button>
+        <button class="highlight" type="button" data-open="3"><span><img src="post-04-lunch.webp" alt=""></span><b>everyday</b></button>
+        <button class="highlight" type="button" data-open="4"><span><img src="post-05-notes.webp" alt=""></span><b>notes</b></button>
+        <button class="highlight" type="button" data-open="5"><span><img src="post-06-reset.webp" alt=""></span><b>slowdown</b></button>
+      </section>
+
+      <section class="feed-section" aria-label="Публикации">
+        <div class="feed-topline"><span class="muted">В кадре — мои обычные дни</span><span class="feed-number">01 — 06</span></div>
+        <div class="feed-tabs" role="tablist" aria-label="Выберите публикации">
+          <button type="button" role="tab" aria-selected="true" class="feed-tab is-active" data-view="all"><svg><use href="#ico-grid"/></svg><span>ПУБЛИКАЦИИ</span></button>
+          <button type="button" role="tab" aria-selected="false" class="feed-tab" data-view="saved"><svg><use href="#ico-bookmark"/></svg><span>СОХРАНЁННОЕ</span></button>
+          <button type="button" role="tab" aria-selected="false" class="feed-tab" data-view="liked"><svg><use href="#ico-heart"/></svg><span>НРАВИТСЯ</span></button>
+        </div>
+        <div class="gallery" id="gallery" aria-live="polite"></div>
+        <div class="empty" id="emptyState" hidden><svg><use href="#ico-camera"/></svg><h3 id="emptyHeading">Здесь пока ничего нет</h3><p id="emptyMessage">Откройте публикацию, чтобы сохранить её или отметить сердечком.</p><button type="button" class="button button-outline" id="resetView">Все публикации</button></div>
+        <p class="feed-end">small steps, every day <span>✦</span></p>
+      </section>
+    </div>
+  </main>
+
+  <nav class="mobile-bottom" aria-label="Навигация"><button type="button" aria-label="Все публикации" data-view="all"><svg><use href="#ico-home"/></svg></button><button type="button" aria-label="Поиск" id="mobileBottomSearch"><svg><use href="#ico-search"/></svg></button><button type="button" aria-label="Понравившееся" data-view="liked"><svg><use href="#ico-heart"/></svg></button><button type="button" aria-label="Сохранённое" data-view="saved"><svg><use href="#ico-bookmark"/></svg></button><button type="button" aria-label="Наверх" id="mobileAccount"><img src="avatar.webp" alt=""></button></nav>
+
+  <div class="search-backdrop" id="searchBackdrop" hidden><div class="search-panel" role="dialog" aria-modal="true" aria-label="Поиск по постам"><div class="search-head"><strong>Найти в профиле</strong><button type="button" class="plain-icon" id="closeSearch" aria-label="Закрыть поиск"><svg><use href="#ico-close"/></svg></button></div><label class="search-field"><svg><use href="#ico-search"/></svg><input id="searchInput" type="search" placeholder="Тренировки, уход, вечер…" autocomplete="off"></label><p class="search-hint">Поиск по подписям и хэштегам шести публикаций</p><div id="searchResults" class="search-results"></div></div></div>
+
+  <div class="modal-overlay" id="postOverlay" hidden>
+    <button type="button" class="modal-close plain-icon" id="closePost" aria-label="Закрыть публикацию"><svg><use href="#ico-close"/></svg></button>
+    <button type="button" class="modal-direction prev" id="prevPost" aria-label="Предыдущая публикация"><svg><use href="#ico-chev"/></svg></button>
+    <article class="post-modal" role="dialog" aria-modal="true" aria-labelledby="modalUser">
+      <div class="post-photo"><img id="modalImage" src="post-01-workout.webp" alt=""><div class="photo-gradient"></div><span class="photo-count" id="photoCount">01 / 06</span><div class="photo-arrow-controls"><button type="button" id="photoPrev" aria-label="Предыдущая публикация"><svg><use href="#ico-chev"/></svg></button><button type="button" id="photoNext" aria-label="Следующая публикация"><svg><use href="#ico-chev"/></svg></button></div></div>
+      <div class="post-info"><div class="post-header"><img src="avatar.webp" alt="" class="post-avatar"><div><strong id="modalUser">perfect.daily</strong><span id="modalLocation">Санкт-Петербург</span></div><span class="post-header-star">✦</span></div>
+        <div class="post-discussion" id="postDiscussion"><div class="post-caption"><img src="avatar.webp" alt="" class="comment-avatar"><div><span class="caption-user">perfect.daily</span> <span id="postCaption"></span><div id="postTags" class="hashtags"></div><span id="postAge" class="timestamp"></span></div></div><div class="comments-heading">Комментарии <span id="commentTotal"></span></div><div id="commentsList" class="comments-list"></div></div>
+        <div class="post-bottom"><div class="post-buttons"><div class="post-buttons-left"><button type="button" class="plain-icon action-heart" id="modalLike" aria-label="Нравится"><svg><use href="#ico-heart"/></svg></button><button type="button" class="plain-icon" id="modalComment" aria-label="Написать комментарий"><svg><use href="#ico-message"/></svg></button><button type="button" class="plain-icon" id="modalShare" aria-label="Скопировать ссылку"><svg><use href="#ico-share"/></svg></button></div><button type="button" class="plain-icon action-save" id="modalSave" aria-label="Сохранить"><svg><use href="#ico-bookmark"/></svg></button></div><p class="likes-text" id="modalLikes"></p><p class="post-date" id="modalDate"></p><form class="comment-form" id="commentForm"><input type="text" id="commentInput" name="comment" maxlength="280" placeholder="Добавьте комментарий…" aria-label="Текст комментария" required autocomplete="off"><button type="submit" id="submitComment">Опубликовать</button></form></div>
+      </div>
+    </article>
+    <button type="button" class="modal-direction next" id="nextPost" aria-label="Следующая публикация"><svg><use href="#ico-chev"/></svg></button>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
